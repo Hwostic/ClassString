@@ -22,7 +22,11 @@ int main()
     newString myString2(lenght);
  
     
-    newString myString3(true);
+    const int bufferSize = 5000;
+    char* buffer= new char [bufferSize];
+    cout << "Введите вашу строку произвольной длины: ";
+    cin.getline(buffer, bufferSize);
+    newString myString3(buffer);
     cout << "Ваша строка: ";
     myString3.print();
 

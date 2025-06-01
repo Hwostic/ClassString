@@ -4,16 +4,8 @@ using namespace std;
 
 int newString::count;
 
-newString::newString() //конструкто по умолчанию, который создает строку не больше 10 символов;
-{
-
-	str = nullptr;
-    len = 10;
-	str = new char [len+1];
-	*str = '\0';
-    count++;
-};
-newString::newString(int length) //конструктор, который принимает длину строки  и создает строку с этой длиной
+newString::newString() : newString(10) {};  //конструкто по умолчанию, который создает строку не больше 10 символов;{};
+newString::newString(int length)  //конструктор, который принимает длину строки  и создает строку с этой длиной
 {
 
 	len=length;
@@ -23,13 +15,13 @@ newString::newString(int length) //конструктор, который принимает длину строки  
 };
 
 
-newString::newString(bool prompt) //конструктор, создающий строку и инициализирующий ее строкой, введенным пользователем
+newString::newString( char* buffer) //конструктор, создающий строку и инициализирующий ее строкой, введенным пользователем
 
 {
-    const int bufferSize = 1000;
-    char buffer[bufferSize];
-    cout << "Введите вашу строку произвольной длины: ";
-    cin.getline(buffer, bufferSize);
+//    const int bufferSize = 5000;
+//    char buffer[bufferSize];
+//    cout << "Введите вашу строку произвольной длины: ";
+//    cin.getline(buffer, bufferSize);
     len = strlen(buffer);
     str = new char[len + 1];
     strcpy_s(str, len + 1, buffer);

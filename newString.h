@@ -1,4 +1,7 @@
 #pragma once
+using namespace std;
+#include <iostream>
+
 class newString
 {
 private:
@@ -11,9 +14,15 @@ public:
     newString() ;
  // конструктор по умолчанию
     newString(int length); //конструктор принимающий новую длину
-    newString( char* str); //конструктор принимающий 
+    newString( char* buffer); //конструктор принимающий массив символов
+    newString(newString&& newStr)  noexcept ;
     ~newString();
     
+    friend ostream& operator<<(ostream& out, const newString& instr);  //оператор вывода
+    
+    newString& operator=(newString&& newStr) ; //оператор присваивания через перемещение
+    
+
     void Input();
     void print();
    

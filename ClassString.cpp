@@ -6,6 +6,7 @@ using namespace std;
 int main()
 {
     setlocale(LC_ALL, "RU");
+    system("chcp 1251");
 
     int lenght = 0;
     newString myString;
@@ -30,8 +31,13 @@ int main()
     cout << "Ваша строка: ";
     myString3.print();
 
-    cout << "Количество созданных строк: " << newString::getSumStrings();
+    cout << "Количество созданных строк: " << newString::getSumStrings() <<endl;
    
+    cout << "Проверка оператора вывода: " << myString3;
 
+
+    myString3 = move(myString);
+
+    cout << myString3;
 }
 

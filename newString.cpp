@@ -1,10 +1,12 @@
 #include "newString.h"
 #include <iostream>
+#include <ostream>
 using namespace std;
 
 int newString::count;
 
 newString::newString() : newString(10) {};  //конструкто по умолчанию, который создает строку не больше 10 символов;{};
+
 newString::newString(int length)  //конструктор, который принимает длину строки  и создает строку с этой длиной
 {
 
@@ -26,6 +28,39 @@ newString::newString( char* buffer) //конструктор, создающий строку и инициализи
     str = new char[len + 1];
     strcpy_s(str, len + 1, buffer);
     count++;
+}
+
+
+newString::newString(newString&& newStr) noexcept:
+    str(newStr.str), len(newStr.len)
+{
+    newStr.str = nullptr;
+    newStr.len = 0;
+}
+
+ostream& operator<<(ostream& out, const newString& instr)
+{
+        out << instr.str << endl;
+        return out;
+
+}
+
+newString& newString::operator=(newString&& newStr) { //убрали конст, так как newStr - временная изменяемая
+    if (this != &newStr) 
+    {
+      
+        delete[] str; //освобождаем текущую память память
+
+        //заменяем объекты
+        str = newStr.str; 
+        len = newStr.len;
+
+       //обнуляем указатели
+      newStr.str = nullptr;
+      newStr.len = 0;
+      
+    }
+    return *this;
 }
 
 
